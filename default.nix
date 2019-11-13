@@ -34,7 +34,7 @@ rec {
   openmpi2-ib = pkgs.callPackage ./pkgs/openmpi/2.nix { enableIbverbs = true; };
   openmpi3 = pkgs.callPackage ./pkgs/openmpi/3.nix { };
   psm2 = pkgs.callPackage ./pkgs/psm2 { };
-  libfabric = pkgs.callPackage ./pkgs/libfabric { };
+  libfabric = pkgs.callPackage ./pkgs/libfabric { psm2 = psm2; };
 
   # Petsc
   petscComplex = pkgs.callPackage ./pkgs/petsc { scalarType = "complex"; };
