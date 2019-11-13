@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 
-{
+rec {
   # The `lib`, `modules`, and `overlay` names are special
   lib = import ./lib { inherit pkgs; }; # functions
   modules = import ./modules; # NixOS modules
@@ -42,7 +42,7 @@
   petsc = petscComplex;
 
   # udocker
-  udocker = pythonPackages.callPackage ./pkgs/udocker { };
+  udocker = pkgs.pythonPackages.callPackage ./pkgs/udocker { };
 
   # Arpack-ng
   arpackNG = pkgs.callPackage ./pkgs/arpack-ng { };
