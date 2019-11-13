@@ -50,7 +50,10 @@ rec {
   # GMT
   gshhg-gmt = pkgs.callPackage ./pkgs/gmt/gshhg-gmt.nix { };
   dcw-gmt   = pkgs.callPackage ./pkgs/gmt/dcw-gmt.nix { };
-  gmt = pkgs.callPackage ./pkgs/gmt { };
+  gmt = pkgs.callPackage ./pkgs/gmt { 
+          gshhg-gmt = gshhg-gmt ;
+          dcw-gmt = dcw-gmt ;
+        };
 
   # ParMETIS
   parmetis = pkgs.callPackage ./pkgs/parmetis { };
