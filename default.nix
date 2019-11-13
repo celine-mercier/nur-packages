@@ -28,7 +28,7 @@ rec {
   #intel-compilers-2018 = pkgs.callPackage ./pkgs/intel/2018.nix { };
 
   # Openmpi
-  openmpi = pkgs.callPackage ./pkgs/openmpi { };
+  #openmpi = pkgs.callPackage ./pkgs/openmpi { };
   openmpi2 = pkgs.callPackage ./pkgs/openmpi/2.nix { psm2 = psm2; libfabric = libfabric;};
   openmpi2-opa = pkgs.callPackage ./pkgs/openmpi/2.nix {
     psm2 = psm2;
