@@ -29,10 +29,20 @@ rec {
 
   # Openmpi
   openmpi = pkgs.callPackage ./pkgs/openmpi { };
-  openmpi2 = pkgs.callPackage ./pkgs/openmpi/2.nix { };
-  openmpi2-opa = pkgs.callPackage ./pkgs/openmpi/2.nix { enableFabric = true; };
-  openmpi2-ib = pkgs.callPackage ./pkgs/openmpi/2.nix { enableIbverbs = true; };
-  openmpi3 = pkgs.callPackage ./pkgs/openmpi/3.nix { };
+  openmpi2 = pkgs.callPackage ./pkgs/openmpi/2.nix { psm2 = psm2; libfabric = libfabric;};
+  openmpi2-opa = pkgs.callPackage ./pkgs/openmpi/2.nix {
+    psm2 = psm2;
+    libfabric = libfabric;
+    enableFabric = true;
+  };
+  openmpi2-ib = pkgs.callPackage ./pkgs/openmpi/2.nix {
+    psm2 = psm2;
+    libfabric = libfabric;
+    enableIbverbs = true;
+  };
+  openmpi3 = pkgs.callPackage ./pkgs/openmpi/3.nix {
+    psm2 = psm2;
+  };
   psm2 = pkgs.callPackage ./pkgs/psm2 { };
   libfabric = pkgs.callPackage ./pkgs/libfabric { psm2 = psm2; };
 
