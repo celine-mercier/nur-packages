@@ -1,9 +1,9 @@
 { stdenv, fetchurl, glibc, gcc }:
 
 stdenv.mkDerivation rec {
-  version = "2018u4";
+  version = "2019u3";
   name = "intel-compilers-${version}";
-  sourceRoot = "/scratch/intel/2018";
+  sourceRoot = "/home/scratch/intel/2019";
 
   buildInputs = [ glibc gcc ];
 
@@ -32,7 +32,7 @@ stdenv.mkDerivation rec {
     echo "Fixing rights..."
     chmod u+w -R $out
     echo "Patching rpath and interpreter..."
-    find $out -type f -exec $SHELL -c 'patchelf --set-interpreter $(echo ${glibc}/lib/ld-linux*.so.2) --set-rpath ${glibc}/lib:${gcc.cc}/lib:${gcc.cc.lib}/lib:$out/lib/intel64:$out/compilers_and_libraries_2018.5.274/linux/bin/intel64 2>/dev/null {}' \;
+    find $out -type f -exec $SHELL -c 'patchelf --set-interpreter $(echo ${glibc}/lib/ld-linux*.so.2) --set-rpath ${glibc}/lib:${gcc.cc}/lib:${gcc.cc.lib}/lib:$out/lib/intel64:$out/compilers_and_libraries_2019.3.0.591499/linux/bin/intel64 2>/dev/null {}' \;
     echo "Fixing path into scripts..."
     for file in `grep -l -r "$sourceRoot" $out`
     do
@@ -41,7 +41,7 @@ stdenv.mkDerivation rec {
   '';
 
   meta = {
-    description = "Intel compilers and libraries 2018 update 4";
+    description = "Intel compilers and libraries 2019 update 3";
     maintainers = [ stdenv.lib.maintainers.bzizou ];
     platforms = stdenv.lib.platforms.linux;
     license = stdenv.lib.licenses.unfree;
