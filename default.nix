@@ -15,9 +15,9 @@ rec {
   # Casa
   # Versions 4.7.2 and 5.1.1 are kept for backward
   # compatibility issues.
-  #casa-472 = pkgs.callPackage ./pkgs/casa/4.7.2.nix { };
-  #casa-511 = pkgs.callPackage ./pkgs/casa/5.1.1.nix { };
-  #casa = pkgs.callPackage ./pkgs/casa/default.nix { };
+  casa-472 = pkgs.callPackage ./pkgs/casa/4.7.2.nix { };
+  casa-511 = pkgs.callPackage ./pkgs/casa/5.1.1.nix { };
+  casa = pkgs.callPackage ./pkgs/casa/default.nix { };
 
   # Charliecloud
   charliecloud = pkgs.callPackage ./pkgs/charliecloud { };
