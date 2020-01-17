@@ -61,13 +61,13 @@ rec {
   # GMT
   gshhg-gmt = pkgs.callPackage ./pkgs/gmt/gshhg-gmt.nix { };
   dcw-gmt   = pkgs.callPackage ./pkgs/gmt/dcw-gmt.nix { };
-  gmt = pkgs.callPackage ./pkgs/gmt { 
+  gmt = pkgs.callPackage ./pkgs/gmt {
           gshhg-gmt = gshhg-gmt ;
           dcw-gmt = dcw-gmt ;
         };
 
   # Trilinos
-  #trilinos =  pkgs.callPackage ./pkgs/trilinos { };
+  trilinos =  pkgs.callPackage ./pkgs/trilinos { };
 
   # Szip
   szip =  pkgs.callPackage ./pkgs/szip { };
