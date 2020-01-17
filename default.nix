@@ -48,9 +48,9 @@ rec {
   libfabric = pkgs.callPackage ./pkgs/libfabric { psm2 = psm2; };
 
   # Petsc
-  #petscComplex = pkgs.callPackage ./pkgs/petsc { scalarType = "complex"; };
-  #petscReal = pkgs.callPackage ./pkgs/petsc { scalarType = "real"; };
-  #petsc = petscComplex;
+  petscComplex = pkgs.callPackage ./pkgs/petsc { scalarType = "complex"; };
+  petscReal = pkgs.callPackage ./pkgs/petsc { scalarType = "real"; };
+  petsc = petscComplex;
 
   # udocker
   udocker = pkgs.pythonPackages.callPackage ./pkgs/udocker { };
