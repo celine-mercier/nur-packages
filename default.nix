@@ -91,7 +91,7 @@ rec {
   lhapdf59 = pkgs.callPackage ./pkgs/lhapdf59 { };
 
   # Bagel
-  #bagel = pkgs.callPackage ./pkgs/bagel { };
+  bagel = pkgs.callPackage ./pkgs/bagel { };
 
   # stacks
   stacks = pkgs.callPackages ./pkgs/stacks { };
@@ -100,7 +100,7 @@ rec {
   messer-slim = pkgs.callPackages ./pkgs/messer-slim { };
 
   # Fate
-  #fate = pkgs.callPackages ./pkgs/fate { };
+  fate = pkgs.callPackages ./pkgs/fate { };
 
   # Migrate
   migrate = pkgs.callPackages ./pkgs/migrate { };
