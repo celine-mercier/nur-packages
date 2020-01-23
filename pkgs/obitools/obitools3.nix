@@ -18,7 +18,7 @@ pythonPackages.buildPythonApplication rec {
     export NIX_CFLAGS_COMPILE="-L $out/lib/${python3.libPrefix}/site-packages $NIX_CFLAGS_COMPILE"
   '';
 
-  allowedReferences = ["out"];
+  patches = [ ./omp.patch ];
 
   postInstall = "cp obi_completion_script.sh $out/bin";
 
@@ -36,6 +36,5 @@ pythonPackages.buildPythonApplication rec {
     license = licenses.cecill20;
     maintainers = [ maintainers.bzizou ];
     platforms = platforms.all;
-    broken = true; # Build error on current branch (ok on 09.19)
   };
 }

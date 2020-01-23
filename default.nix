@@ -82,7 +82,7 @@ rec {
   plplot = pkgs.callPackage ./pkgs/plplot { };
 
   # Hoppet
-  hoppet = pkgs.callPackage ./pkgs/hoppet { };
+  #hoppet = pkgs.callPackage ./pkgs/hoppet { };
 
   # applgrid
   applgrid = pkgs.callPackage ./pkgs/applgrid { };
