@@ -34,6 +34,7 @@ stdenv.mkDerivation rec{
 
   configureFlags = [ "--with-mpi=openmpi" "--disable-scalapack" "--with-boost=${boost}" ];
 
+  enableParallelBuilding = true;
 
   postPatch = ''
     # Fixed upstream
