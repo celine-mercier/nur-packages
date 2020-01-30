@@ -6,19 +6,17 @@ in
 
 pythonPackages.buildPythonApplication rec {
   pname = "obitools3";
-  version = "3.0.0-beta1";
+  version = "3.0.0-beta8";
 
   src = fetchurl {
     url = "https://git.metabarcoding.org/obitools/${pname}/repository/v${version}/archive.tar.gz";
-    sha256 = "135pic5h3vvs8ls3npd7wfwl4y0a0qxm1f2z7ya09d9qbw3zw3kq";
+    sha256 = "633b71da16424c63f16ddbbb7ecf627e8381bec557735e6550a9bebe4fd374cc";
   };
 
   preBuild = ''
     substituteInPlace src/CMakeLists.txt --replace \$'{PYTHONLIB}' "$out/lib/${python3.libPrefix}/site-packages";
     export NIX_CFLAGS_COMPILE="-L $out/lib/${python3.libPrefix}/site-packages $NIX_CFLAGS_COMPILE"
   '';
-
-  patches = [ ./omp.patch ];
 
   postInstall = "cp obi_completion_script.sh $out/bin";
 
