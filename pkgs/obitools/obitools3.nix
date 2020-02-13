@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, python3Packages, cmake, python3 }:
+{ stdenv, fetchurl, python3Packages, cmake, python3, bash }:
 
 let
   pythonPackages = python3Packages;
@@ -14,11 +14,18 @@ pythonPackages.buildPythonApplication rec {
   };
 
   preBuild = ''
+    substituteInPlace python/obitools3/dms/dms.pyx --replace "/bin/bash" "${bash}/bin/bash";
+    substituteInPlace python/obitools3/dms/view/view.pyx --replace "/bin/bash" "${bash}/bin/bash";
     substituteInPlace src/CMakeLists.txt --replace \$'{PYTHONLIB}' "$out/lib/${python3.libPrefix}/site-packages";
     export NIX_CFLAGS_COMPILE="-L $out/lib/${python3.libPrefix}/site-packages $NIX_CFLAGS_COMPILE"
   '';
 
-  postInstall = "cp obi_completion_script.sh $out/bin";
+  patches = [ ./completion_bugfix.patch ];
+
+  postInstall = ''
+    patchShebangs ./obi_completion_script.sh;
+    cp obi_completion_script.sh "$out/bin";
+  '';
 
   disabled = !pythonPackages.isPy3k;
 
@@ -27,6 +34,8 @@ pythonPackages.buildPythonApplication rec {
   dontConfigure = true;
 
   doCheck = true;
+
+  enableParallelBuilding = true;
 
   meta = with stdenv.lib ; {
     description = "Management of analyses and data in DNA metabarcoding";
