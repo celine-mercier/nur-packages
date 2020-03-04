@@ -29,7 +29,7 @@ rec {
   intel-compilers-2019 = pkgs.callPackage ./pkgs/intel/2019.nix { };
 
   # Openmpi
-  #openmpi = pkgs.callPackage ./pkgs/openmpi { };
+  openmpi = pkgs.callPackage ./pkgs/openmpi { };
   openmpi2 = pkgs.callPackage ./pkgs/openmpi/2.nix { psm2 = psm2; libfabric = libfabric;};
   openmpi2-opa = pkgs.callPackage ./pkgs/openmpi/2.nix {
     psm2 = psm2;
@@ -58,10 +58,16 @@ rec {
   # Arpack-ng
   arpackNG = pkgs.callPackage ./pkgs/arpack-ng { };
 
+  # Gdal
+  gdal = pkgs.callPackage ./pkgs/gdal {  # forked from nixpkgs master as unstable is bugged, for dep
+    libmysqlclient = pkgs.mysql // {lib = {dev = pkgs.mysql;};};
+  };
+
   # GMT
   gshhg-gmt = pkgs.callPackage ./pkgs/gmt/gshhg-gmt.nix { };
   dcw-gmt   = pkgs.callPackage ./pkgs/gmt/dcw-gmt.nix { };
   gmt = pkgs.callPackage ./pkgs/gmt {
+          gdal = gdal ;
           gshhg-gmt = gshhg-gmt ;
           dcw-gmt = dcw-gmt ;
         };
@@ -100,7 +106,7 @@ rec {
   messer-slim = pkgs.callPackages ./pkgs/messer-slim { };
 
   # Fate
-  fate = pkgs.callPackages ./pkgs/fate { };
+  fate = pkgs.callPackages ./pkgs/fate { gdal = gdal; };
 
   # Migrate
   migrate = pkgs.callPackages ./pkgs/migrate { };
@@ -118,7 +124,7 @@ rec {
   fftw3 = pkgs.callPackages ./pkgs/fftw { };
 
   # Zonation
-  zonation-core = pkgs.callPackages ./pkgs/zonation-core { };
+  zonation-core = pkgs.callPackages ./pkgs/zonation-core { gdal = gdal ; };
 
   # Scotch 6.0.5a with mumps libraries
   scotch-mumps = pkgs.callPackages ./pkgs/scotch-mumps { };

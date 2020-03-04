@@ -24,12 +24,13 @@ stdenv.mkDerivation rec {
     sourceRoot = "${name}";
 
     preBuild = ''
-     # patchShebangs test/make-auto     
+      patchShebangs test/make-auto     
       cp VERSION VERSION.full
       export PREFIX=$out
       cp -a ../bats-${bats_version}/* test/bats/
      '';
 
- 
-
+    meta = with stdenv.lib; {                                                  
+      broken = true;
+    };
 }
