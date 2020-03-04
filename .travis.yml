@@ -17,10 +17,8 @@ install:
   fi
 - if [ -n "${CACHIX_CACHE}" ]; then cachix use "${CACHIX_CACHE}"; fi
 - nix-channel --add "${NIX_CHANNEL}" nixpkgs
-- perl -pi -e "s,^trusted-substituters.*=,trusted-substituters = http://nix-binary-cache.u-ga.fr/nix.cache ," /etc/nix/nix.conf
-- perl -pi -e "s,^substituters.*=,substituters = http://nix-binary-cache.u-ga.fr/nix.cache ," /etc/nix/nix.conf
-- cat /etc/nix/nix.conf
-- ls -lR ~/.config
+- perl -pi -e "s,^trusted-substituters.*=,trusted-substituters = http://nix-binary-cache.u-ga.fr/nix.cache ," ~/.config/nix/nix.conf
+- perl -pi -e "s,^substituters.*=,substituters = http://nix-binary-cache.u-ga.fr/nix.cache ," ~/.config/nix/nix.conf
 - travis_retry nix-channel --update
 script:
 - set -o pipefail
