@@ -16,9 +16,6 @@ rec {
   #casa-511 = pkgs.callPackage ./pkgs/casa/5.1.1.nix { };
   #casa = pkgs.callPackage ./pkgs/casa/default.nix { };
 
-  # Charliecloud
-  charliecloud = pkgs.callPackage ./pkgs/charliecloud { };
-
   # Intel compiler
   #intel-compilers-2016 = pkgs.callPackage ./pkgs/intel/2016.nix { };
   intel-compilers-2017 = pkgs.callPackage ./pkgs/intel/2017.nix { };
