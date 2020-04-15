@@ -6,11 +6,11 @@ in
 
 pythonPackages.buildPythonApplication rec {
   pname = "obitools3";
-  version = "3.0.0-beta13";
+  version = "3.0.0-beta14";
 
   src = fetchurl {
     url = "https://git.metabarcoding.org/obitools/${pname}/repository/v${version}/archive.tar.gz";
-    sha256 = "8b765c86c5e9c7a4df660fa37585f266174d5ec609bc0c7c9759f2afb60f5d1d";
+    sha256 = "82904f00f73f0d5c1c03a263bec0a3c023a4427d248d2a9c5a86f6ed3a9d799e";
   };
 
   preBuild = ''
